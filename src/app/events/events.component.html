@@ -64,9 +64,9 @@
                 </div>
                 <div class="event-related-tags" *ngIf = "event.card_tags.length > 3">
                   <div class = "event-related-tag" *ngFor="let tag of event.card_tags | slice:0:3">{{tag}}</div>
-                </div>
-                <div class="more-tags" *ngIf = "event.card_tags.length > 3">
-                  See {{event.card_tags.length - 3}} more tags
+                  <div class="more-tags" *ngIf = "event.card_tags.length > 3">
+                    +{{event.card_tags.length - 3}} more
+                  </div>
                 </div>
               </main>
               <footer>

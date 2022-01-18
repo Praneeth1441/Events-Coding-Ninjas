@@ -126,6 +126,7 @@
 .event-tags-cover{
   display: flex;
   flex-wrap: wrap;
+  overflow-x: auto;
 }
 
 .tag-cover{
@@ -343,6 +344,7 @@ main{
   flex-wrap: wrap;
   height: 64px;
   margin-top: 20px;
+  overflow-y: auto;
 }
 
 .event-related-tag{
@@ -407,7 +409,7 @@ footer{
 .event-registration-status{
   display: flex;
 }
-
+@media (min-width: 750px){
 .register-button{
   background: linear-gradient(90deg,#fa7328,#ee9f15);
   border-radius: 3px;
@@ -419,7 +421,26 @@ footer{
   line-height: 18px;
   text-align: center;
   display:inline-block;
+  padding:0px;
 }
+}
+
+@media (max-width: 750px){
+.register-button{
+  background: linear-gradient(90deg,#fa7328,#ee9f15);
+  border-radius: 3px;
+  color: #fff;
+  width: 100px;
+  height: 32px;
+  border: none;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  display:inline-block;
+  padding:0px;
+}
+}
+
 
 .Pagination-cover{
   display: flex;
