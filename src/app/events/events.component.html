@@ -1,0 +1,122 @@
+<div class="main-bg">
+  <div class="page-heading">
+    <div class="heading-title">
+      EVENTS & NEWS
+    </div>
+    <div class="heading-subtitle">
+      Learn, Compete &amp; Grow
+    </div>
+  </div>
+  <div class = "events-bg">
+    <div class = "events-types">
+      <a class = "event-type" [class.active]="isActiveEvent(event)" (click) = "routeToEventPage(event)" *ngFor="let event of eventEnums"> {{event.displayName}}</a>
+    </div>
+    <div class = "sub-categories">
+      <a class = "subcat-type" [class.active]="isActiveSubCat(subCat)" (click) = "routeToSubCatPage(subCat)" *ngFor="let subCat of subEventCategories"> {{subCat.displayName}}</a>
+    </div>
+    <div  class = "events-display">
+      <!-- <div *ngIf = "throbber" class="load">
+        <div class="loader"></div>
+      </div> -->
+      <div class="eventinfo"  *ngIf = "page_count != 0">
+        <div class="event-cards">
+          <a class="event-card-info" *ngFor="let event of eventInfo">
+            <div class="event-card">
+              <header>
+                <div class="img-cover">
+                  <img [src]="event.cover_picture" [alt]="event.name">
+                </div>
+                <div class="registration-status" *ngIf = "event.registration_status == 'REGISTRATIONS_OPEN'">
+                  <div class="registration-status-body">
+                    <div class="registration-status-symbol">
+                    </div>
+                    <p>
+                      Registrations
+                      <b>open</b>
+                      till
+                      <b>{{event.registration_end_time * 1000 | date:'MMM d, h:mm a'}}</b>
+                    </p>
+                  </div>
+                </div>
+              </header>
+              <main>
+                <p class = "event-name">{{event.name}}</p>
+                <div class="event-details">
+                  <div class="event-start-time">
+                    <p class="event-start-header"><b>Starts on</b></p>
+                    <p class="event-start-body">{{event.event_start_time * 1000 | date:' h:mm a, d MMM y'}}</p>
+                  </div>
+                  <div class="event-fees">
+                    <p class="event-fees-header"><b>Entry Fee</b></p>
+                    <p class="event-fees-body" *ngIf = "event.fees">{{event.currency}} {{event.fees}}</p>
+                    <p class="event-fees-body" *ngIf = "!event.fees">Free</p>
+                  </div>
+                  <div class="event-mode">
+                    <p class="event-mode-header"><b>Venue</b></p>
+                    <p class="event-mode-body">{{event.venue}}</p>
+                  </div>
+                </div>
+                <div class="event-description">
+                  {{event.short_desc}}
+                </div>
+                <div class="event-related-tags" *ngIf = "event.card_tags.length <= 3">
+                  <div class = "event-related-tag" *ngFor="let tag of event.card_tags">{{tag}}</div>
+                </div>
+                <div class="event-related-tags" *ngIf = "event.card_tags.length > 3">
+                  <div class = "event-related-tag" *ngFor="let tag of event.card_tags | slice:0:3">{{tag}}</div>
+                </div>
+                <div class="more-tags" *ngIf = "event.card_tags.length > 3">
+                  See {{event.card_tags.length - 3}} more tags
+                </div>
+              </main>
+              <footer>
+                <div class="event-registered-users">
+                  <div class="event-top-users">
+                    <div class="user-img" *ngFor="let usr_img of event.registered_users.top_users">
+                      <img class = "user-image" [src]="usr_img.image_url" *ngIf = "usr_img.image_url">
+                      <img class = "user-image" src="https://files.codingninjas.in/0000000000001270.png" *ngIf = "!usr_img.image_url">
+                    </div>
+                  </div>
+                  <p class="remaining-users" *ngIf = "event.registered_users.show_users_count">
+                     and <b>{{event.registered_users.other_users_count}}</b> others are participating
+                  </p>
+                </div>
+                <div class="event-registration-status">
+                  <button type="button" class="register-button" *ngIf = "event.registration_status == 'REGISTRATIONS_OPEN'">Register Now</button>
+                </div>
+              </footer>
+            </div>
+          </a>
+        </div>
+        <div class="Pagination-cover">
+          <a class = "side-arrow" [class.disabled]="page == 1" (click) = "DownPage()">
+            <img src="https://files.codingninjas.in/left-arrow-5581.svg" alt="leftward arrow">
+          </a>
+          <div class="page-info">
+            Page
+            <input class = "page-entry-box" type="number" step = "1" min = "1" [max] = "page_count" (change)="routeToNewPage()" [(ngModel)] = "page">
+            of {{page_count}}
+          </div>
+          <a class = "side-arrow" [class.disabled]="page == page_count" (click) = "UpPage()">
+            <img src="https://files.codingninjas.in/right-arrow-5582.svg" alt="rightward arrow">
+          </a>
+
+        </div>
+      </div>
+      <div class="No-event-found"  *ngIf = "page_count == 0">
+        <p class="no-events">No events found</p>
+      </div>
+      <div class="event-tags">
+        <div class = "tags-title"> Tags </div>
+        <div class = "event-tags-cover">
+          <div class = "tag-cover" [class.active]="findtag(tag) != - 1" *ngFor="let tag of event_tags | slice:0:event_tags_limit"  (click) = "UpdateActiveTagList(tag)">
+            <p class = "tag-info">{{tag}}</p>
+          </div>
+        </div>
+        <div class="more-tags" (click) = "showMoreTags()" *ngIf = "remaining_tags_count">
+          See {{remaining_tags_count}} more tags
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
