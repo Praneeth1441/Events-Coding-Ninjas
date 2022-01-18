@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
+@media (min-width: 900px){
 .main-bg{
   padding-left:120px;
   padding-right:120px;
+}
 }
 .page-heading{
   height: 224px;
@@ -153,11 +154,23 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+@media (min-width: 750px){
 .event-card-info{
   width: 50%;
   color: inherit;
   text-decoration: none;
 }
+}
+
+@media (max-width: 750px){
+.event-card-info{
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+}
+
 .event-card{
   background: #fff;
   border-radius: 5px;
