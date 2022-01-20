@@ -30,7 +30,7 @@
     </div> -->
     <div class = "tags-content-2" [class.active] = "tags_button_status">
       <div class = "event-tags-cover-2">
-        <div class = "tag-cover-2" [class.active]="findtag(tag) != - 1" *ngFor="let tag of event_tags | slice:0:event_tags_limit"  (click) = "UpdateActiveTagList(tag)">
+        <div class = "tag-cover-2" [class.active]="findtag(tag_list_array, tag) != - 1" *ngFor="let tag of event_tags | slice:0:event_tags_limit"  (click) = "UpdateActiveTagList(tag)">
           <p class = "tag-info-2">{{tag}}</p>
         </div>
         <div class="event-more-tags-2" (click) = "showMoreTags()" *ngIf = "remaining_tags_count">
@@ -51,7 +51,7 @@
             <div class="event-card">
               <header>
                 <div class="img-cover">
-                  <img [src]="event.cover_picture" [alt]="event.name">
+                  <img [src]="event.mobile_cover_picture" [alt]="event.name">
                 </div>
                 <div class="registration-status" *ngIf = "event.registration_status == 'REGISTRATIONS_OPEN'">
                   <div class="registration-status-body">
@@ -136,7 +136,7 @@
       <div class="event-tags">
         <div class = "tags-title"> Tags </div>
         <div class = "event-tags-cover">
-          <div class = "tag-cover" [class.active]="findtag(tag) != - 1" *ngFor="let tag of event_tags | slice:0:event_tags_limit"  (click) = "UpdateActiveTagList(tag)">
+          <div class = "tag-cover" [class.active]="findtag(tag_list_array, tag) != - 1" *ngFor="let tag of event_tags | slice:0:event_tags_limit"  (click) = "UpdateActiveTagList(tag)">
             <p class = "tag-info">{{tag}}</p>
           </div>
         </div>

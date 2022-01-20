@@ -183,7 +183,7 @@
   border-radius: 10px;
 }
 .tags-content-2{
-  background: #faf7f2;;
+  background: #faf7f2;
   display: none;
   /* position: relative; */
 }
@@ -191,7 +191,8 @@
   padding: 0.625rem;
   display: flex;
   flex-wrap: wrap;
-  /* overflow-x: auto; */
+  overflow-y: auto;
+  height: 350px;
 }
 /* .selected-tags{
   padding: 0.625rem;

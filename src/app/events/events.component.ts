@@ -132,9 +132,9 @@ export class EventsComponent implements OnInit {
     this.page = this.page - 1;
     this.routeToNewPage();
   }
-  findtag(tag: any){
-    for(var i = 0;i<this.tag_list_array.length;i++){
-      if(this.tag_list_array[i] == tag){
+  findtag(tag_list: any,tag: any){
+    for(var i = 0;i<tag_list.length;i++){
+      if(tag_list[i] == tag){
         return i;
       }
     }
@@ -143,11 +143,15 @@ export class EventsComponent implements OnInit {
   UpdateActiveTagList(tag: any){
     // console.log(tag);
     // console.log(typeof(tag));
-    if(this.findtag(tag) == -1){
+    if(this.findtag(this.tag_list_array, tag) == -1){
       this.tag_list_array.push(tag);
+      this.event_tags.splice(this.findtag(this.event_tags, tag),1);
+      this.event_tags.splice(this.tag_list_array.length - 1, 0, tag);
     }
     else{
-      this.tag_list_array.splice(this.findtag(tag),1);
+      this.tag_list_array.splice(this.findtag(this.tag_list_array, tag),1);
+      this.event_tags.splice(this.findtag(this.event_tags, tag),1);
+      this.event_tags.splice(this.tag_list_array.length, 0, tag);
     }
     this.tag_list = this.tag_list_array.join(",");
     let queryParams = this.eventService.constructQueryParams(this.event_category,this.event_sub_category,this.tag_list,this.page);
