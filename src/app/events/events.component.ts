@@ -27,13 +27,14 @@ export class EventsComponent implements OnInit {
   remaining_tags_count: number = 0;
 
   tag_list_array: string[];
+  tags_button_status: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private eventService : EventsService) {
     this.page = 1;
     this.tag_list_array = [];
     this.event_tags_limit = 10;
     this.remaining_tags_count = 10;
-    // this.event_tags = [];
+    this.tags_button_status =false;
   }
 
   ngOnInit(): void {
@@ -171,5 +172,9 @@ export class EventsComponent implements OnInit {
     this.checkTaglimit();
     this.remaining_tags_count = this.event_tags.length - this.event_tags_limit;
     this.checkRemainingTaglimit();
+  }
+  showTags(){
+    this.tags_button_status = !this.tags_button_status;
+    this.intializeTaglimit();
   }
 }
